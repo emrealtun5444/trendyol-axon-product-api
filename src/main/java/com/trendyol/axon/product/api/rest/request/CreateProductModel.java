@@ -1,4 +1,4 @@
-package com.trendyol.axon.product.api.controller.request;
+package com.trendyol.axon.product.api.rest.request;
 
 import lombok.Data;
 
