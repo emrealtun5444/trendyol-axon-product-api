@@ -1,6 +1,7 @@
 package com.trendyol.axon.product.api.command;
 
 import com.trendyol.axon.product.api.core.event.ProductCreatedEvent;
+import liquibase.util.StringUtils;
 import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -29,6 +30,12 @@ public class ProductAggregate {
         }
         if (createProductCommand.getPrice().compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Price can not be less then 0");
+        }
+        if (StringUtils.isEmpty(createProductCommand.getCategory())) {
+            throw new IllegalArgumentException("Category can not be empty");
+        }
+        if (StringUtils.isEmpty(createProductCommand.getBrand())) {
+            throw new IllegalArgumentException("Brand can not be empty");
         }
 
         final var productCreatedEvent = ProductCreatedEvent.create(createProductCommand);

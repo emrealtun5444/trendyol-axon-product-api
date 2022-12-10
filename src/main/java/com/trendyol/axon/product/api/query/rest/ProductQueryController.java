@@ -16,15 +16,10 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/products")
 public class ProductQueryController {
-
     private final QueryGateway queryGateway;
-
     @GetMapping
     public List<ProductResponseModel> getProducts() {
-
         final var findProductQuery = FindProductQuery.builder().build();
-
         return queryGateway.query(findProductQuery, ResponseTypes.multipleInstancesOf(ProductResponseModel.class)).join();
     }
-
 }
