@@ -12,6 +12,13 @@
             <column name="title" type="VARCHAR(256)">
                 <constraints nullable="false"/>
             </column>
+            <column name="brand" type="VARCHAR(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category" type="VARCHAR(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(2048)"/>
             <column name="price" type="currency">
                 <constraints nullable="false"/>
             </column>

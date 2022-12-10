@@ -1,6 +1,6 @@
-package com.trendyol.axon.product.api.repository;
+package com.trendyol.axon.product.api.query.repository;
 
-import com.trendyol.axon.product.api.domain.Product;
+import com.trendyol.axon.product.api.core.domain.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

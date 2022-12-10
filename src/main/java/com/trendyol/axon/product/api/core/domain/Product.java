@@ -1,7 +1,7 @@
-package com.trendyol.axon.product.api.domain;
+package com.trendyol.axon.product.api.core.domain;
 
 import com.trendyol.axon.product.api.common.model.AbstractEntity;
-import com.trendyol.axon.product.api.event.ProductCreatedEvent;
+import com.trendyol.axon.product.api.core.event.ProductCreatedEvent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +24,15 @@ public class Product extends AbstractEntity {
     private String title;
 
     @Column
+    private String brand;
+
+    @Column
+    private String category;
+
+    @Column
+    private String description;
+
+    @Column
     private BigDecimal price;
 
     @Column
@@ -34,6 +43,9 @@ public class Product extends AbstractEntity {
                 .price(productCreatedEvent.getPrice())
                 .quantity(productCreatedEvent.getQuantity())
                 .title(productCreatedEvent.getTitle())
+                .brand(productCreatedEvent.getBrand())
+                .category(productCreatedEvent.getCategory())
+                .description(productCreatedEvent.getDescription())
                 .id(productCreatedEvent.getId())
                 .build();
     }

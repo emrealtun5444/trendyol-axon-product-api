@@ -1,13 +1,12 @@
 package com.trendyol.axon.product.api.command;
 
-import com.trendyol.axon.product.api.event.ProductCreatedEvent;
+import com.trendyol.axon.product.api.core.event.ProductCreatedEvent;
 import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
-import org.springframework.beans.BeanUtils;
 
 import java.math.BigDecimal;
 
@@ -15,8 +14,11 @@ import java.math.BigDecimal;
 @Aggregate
 public class ProductAggregate {
     @AggregateIdentifier
-    public String id;
+    private String id;
     private String title;
+    private String brand;
+    private String category;
+    private String description;
     private BigDecimal price;
     private Integer quantity;
 
@@ -29,12 +31,7 @@ public class ProductAggregate {
             throw new IllegalArgumentException("Price can not be less then 0");
         }
 
-        final var productCreatedEvent = ProductCreatedEvent.builder()
-                .id(createProductCommand.id)
-                .price(createProductCommand.getPrice())
-                .title(createProductCommand.getTitle())
-                .quantity(createProductCommand.getQuantity())
-                .build();
+        final var productCreatedEvent = ProductCreatedEvent.create(createProductCommand);
 
         AggregateLifecycle.apply(productCreatedEvent);
     }
@@ -45,6 +42,9 @@ public class ProductAggregate {
         this.price = productCreatedEvent.getPrice();
         this.quantity = productCreatedEvent.getQuantity();
         this.title = productCreatedEvent.getTitle();
+        this.brand = productCreatedEvent.getBrand();
+        this.category = productCreatedEvent.getCategory();
+        this.description = productCreatedEvent.getDescription();
     }
 
 }
