@@ -1,8 +1,10 @@
 package com.trendyol.axon.product.api.common.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +13,7 @@ import java.util.Date;
 @Getter
 @Setter
 @RequiredArgsConstructor
+@SuperBuilder
 @MappedSuperclass
 public abstract class AbstractEntity implements Serializable {
 
