@@ -8,6 +8,8 @@ import java.math.BigDecimal;
 @Data
 public class CreateProductRequestModel {
     @NotBlank
+    private String barcode;
+    @NotBlank
     private String title;
     @NotBlank
     private String brand;

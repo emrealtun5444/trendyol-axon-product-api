@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 @SuperBuilder
 @Getter
 public class ProductCreatedEvent extends BaseEvent<String> {
+    private String barcode;
     private String title;
     private String brand;
     private String category;
@@ -20,6 +21,7 @@ public class ProductCreatedEvent extends BaseEvent<String> {
     public static ProductCreatedEvent create(CreateProductCommand createProductCommand) {
         return ProductCreatedEvent.builder()
                 .id(createProductCommand.id)
+                .barcode(createProductCommand.getBarcode())
                 .price(createProductCommand.getPrice())
                 .title(createProductCommand.getTitle())
                 .quantity(createProductCommand.getQuantity())

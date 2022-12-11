@@ -21,6 +21,9 @@ import java.math.BigDecimal;
 public class Product extends AbstractEntity {
 
     @Column
+    private String barcode;
+
+    @Column
     private String title;
 
     @Column
@@ -40,6 +43,7 @@ public class Product extends AbstractEntity {
 
     public static Product create(ProductCreatedEvent productCreatedEvent) {
         return Product.builder()
+                .barcode(productCreatedEvent.getBarcode())
                 .price(productCreatedEvent.getPrice())
                 .quantity(productCreatedEvent.getQuantity())
                 .title(productCreatedEvent.getTitle())

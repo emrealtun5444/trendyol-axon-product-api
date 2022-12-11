@@ -12,6 +12,7 @@ import java.util.UUID;
 @Getter
 public class CreateProductCommand extends BaseCommand<String> {
 
+    private final String barcode;
     private final String title;
     private final String brand;
     private final String category;
@@ -21,6 +22,7 @@ public class CreateProductCommand extends BaseCommand<String> {
 
     public static CreateProductCommand create(CreateProductRequestModel createProductRequestModel) {
         return CreateProductCommand.builder()
+                .barcode(createProductRequestModel.getBarcode())
                 .title(createProductRequestModel.getTitle())
                 .brand(createProductRequestModel.getBrand())
                 .category(createProductRequestModel.getCategory())

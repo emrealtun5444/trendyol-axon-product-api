@@ -9,6 +9,9 @@
             <column name="id" type="VARCHAR(128)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="barcode" type="VARCHAR(256)">
+                <constraints nullable="false"/>
+            </column>
             <column name="title" type="VARCHAR(256)">
                 <constraints nullable="false"/>
             </column>
@@ -30,6 +33,20 @@
             </column>
             <column name="last_modified_date" type="timestamp"/>
         </createTable>
+
+        <createTable tableName="product_lookup">
+            <column name="id" type="VARCHAR(128)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="barcode" type="VARCHAR(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_date" type="timestamp"/>
+        </createTable>
+
     </changeSet>
 
 </databaseChangeLog>

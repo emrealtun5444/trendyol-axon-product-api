@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, String> {
-    @Query("select new com.trendyol.axon.product.api.query.rest.ProductResponseModel(p.id, p.title, p.brand, p.category, p.description, p.price, p.quantity) " +
+    @Query("select new com.trendyol.axon.product.api.query.rest.ProductResponseModel(p.id, p.barcode, p.title, p.brand, p.category, p.description, p.price, p.quantity) " +
             "from Product p")
     List<ProductResponseModel> findAllProduct();
 

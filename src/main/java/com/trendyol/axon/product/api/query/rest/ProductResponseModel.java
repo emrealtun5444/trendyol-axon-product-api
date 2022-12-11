@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 public class ProductResponseModel {
 
     private String id;
+    private String barcode;
     private String title;
     private String brand;
     private String category;

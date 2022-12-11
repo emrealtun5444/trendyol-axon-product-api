@@ -1,9 +1,9 @@
-package com.trendyol.axon.product.api.query;
+package com.trendyol.axon.product.api.command;
 
 import com.trendyol.axon.product.api.common.Constants;
-import com.trendyol.axon.product.api.core.domain.Product;
+import com.trendyol.axon.product.api.core.domain.ProductLookup;
 import com.trendyol.axon.product.api.core.event.ProductCreatedEvent;
-import com.trendyol.axon.product.api.query.repository.ProductRepository;
+import com.trendyol.axon.product.api.core.repository.ProductLookupRepository;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
@@ -12,10 +12,11 @@ import org.springframework.stereotype.Component;
 @Component
 @ProcessingGroup(Constants.Group.PRODUCT)
 @RequiredArgsConstructor
-public class ProductEventHandler {
-    private final ProductRepository productRepository;
+public class ProductLookupEventHandler {
+    private final ProductLookupRepository productLookupRepository;
+
     @EventHandler
     public void on(ProductCreatedEvent productCreatedEvent) {
-        productRepository.save(Product.create(productCreatedEvent));
+        productLookupRepository.save(ProductLookup.create(productCreatedEvent));
     }
 }
