@@ -1,5 +1,6 @@
 package com.trendyol.axon.product.api.common.exception;
 
+import liquibase.command.CommandExecutionException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -36,6 +37,16 @@ public class CustomizedExceptionHandler extends ResponseEntityExceptionHandler {
         var errorResponse = ErrorResponse.builder().build();
         errorResponse.addMessage(exception.getMessage());
         log.error("BusinessException Caused by: {}", errorResponse);
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CommandExecutionException.class)
+    public ResponseEntity<ErrorResponse> handleCommandExecutionException(CommandExecutionException exception) {
+
+        var errorResponse = ErrorResponse.builder().build();
+        errorResponse.addMessage(exception.getMessage());
+        log.error("CommandExecutionException Caused by: {}", errorResponse);
 
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
