@@ -7,6 +7,7 @@ import com.trendyol.axon.product.api.query.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
+import org.axonframework.eventhandling.ResetHandler;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,5 +18,9 @@ public class ProductEventHandler {
     @EventHandler
     public void on(ProductCreatedEvent productCreatedEvent) {
         productRepository.save(Product.create(productCreatedEvent));
+    }
+    @ResetHandler
+    public void reset() {
+        productRepository.deleteAll();
     }
 }

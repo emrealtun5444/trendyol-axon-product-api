@@ -13,7 +13,7 @@ import org.axonframework.spring.stereotype.Aggregate;
 import java.math.BigDecimal;
 
 @NoArgsConstructor
-@Aggregate
+@Aggregate(snapshotTriggerDefinition = "productSnapshotStrategy")
 public class ProductAggregate {
     @AggregateIdentifier
     private String id;
